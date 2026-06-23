@@ -9,6 +9,7 @@ if (NOT IMGUI_PATH)
         message(FATAL_ERROR "[SRE_IMGUI] - Could not find ImGui path, you should know that this repository does not include ImGui, so you'll need to clone the implementation entirely. Please, set the variable `IMGUI_PATH` or place ImGui at either $\{CMAKE_SOURCE_DIR%\} or $\{CMAKE_CURRENT_SOURCE_DIR\}")
     endif()
 
+    set(IMGUI_PATH ${IMGUI_PATH} PARENT_SCOPE)
     message(STATUS "Variable `IMGUI_PATH` not found. Using default at ${__MSG}")
 else()
     if (NOT IS_DIRECTORY ${IMGUI_PATH})
@@ -27,8 +28,9 @@ add_library(imgui_sre
       "${IMGUI_PATH}/imgui_tables.cpp"
       "${IMGUI_PATH}/imgui_widgets.cpp"
 
-    # SRE source
+    # SRE sources
       "src/sre_impl_imgui.cpp"
+      "src/sre_imgui.cpp"
 )
 
 target_link_libraries(imgui_sre PRIVATE sre sre_werror)
