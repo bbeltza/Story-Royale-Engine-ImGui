@@ -77,13 +77,13 @@ namespace sre
         }
 
         inline bool DragRect2DI(const char* label, sre::rect2Di* v, float v_speed = 1.0f, sre::rect2Di v_min = { 0, 0 }, sre::rect2Di v_max = { 0, 0 }, const char* format = "%d",   ImGuiSliderFlags flags = 0) {
-            return DragVec2T(label, v, ImGuiDataType_S32, v_speed, &v_min, &v_max, format, flags);
+            return DragRect2DT(label, v, ImGuiDataType_S32, v_speed, &v_min, &v_max, format, flags);
         }
         inline bool DragRect2DF(const char* label, sre::rect2Df* v, float v_speed = 1.0f, sre::rect2Df v_min = { 0, 0 }, sre::rect2Df v_max = { 0, 0 }, const char* format = "%.3f", ImGuiSliderFlags flags = 0) {
-            return DragVec2T(label, v, ImGuiDataType_Float, v_speed, &v_min, &v_max, format, flags);
+            return DragRect2DT(label, v, ImGuiDataType_Float, v_speed, &v_min, &v_max, format, flags);
         }
         inline bool DragRect2DD(const char* label, sre::rect2Dd* v, float v_speed = 1.0f, sre::rect2Dd v_min = { 0, 0 }, sre::rect2Dd v_max = { 0, 0 }, const char* format = "%.3f", ImGuiSliderFlags flags = 0) {
-            return DragVec2T(label, v, ImGuiDataType_Double, v_speed, &v_min, &v_max, format, flags);
+            return DragRect2DT(label, v, ImGuiDataType_Double, v_speed, &v_min, &v_max, format, flags);
         }
     
     }

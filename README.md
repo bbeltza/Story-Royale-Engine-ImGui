@@ -79,8 +79,8 @@ static void imgui_beforerender();
 static void imgui_afterrender();
 ...
     sre::onEvent.connect(imgui_onevent, NULL);
-    sre::beforeRender.connect(imgui_beforerender, NULL);
-    sre::beforeRender.connect(imgui_afterrender, NULL);
+    sre::beforeRender.connect(imgui_beforerender);
+    sre::beforeRender.connect(imgui_afterrender);
 ...
 ```
 
