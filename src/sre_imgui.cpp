@@ -57,3 +57,51 @@ bool sre::imgui::DragUDim(const char* label, sre::udim* v, sre::udim v_speed, sr
 bool sre::imgui::DragUDim2(const char* label, sre::udim2* v, sre::udim v_speed, sre::udim v_min, sre::udim v_max, const char* format, ImGuiSliderFlags flags) {
     return DragUDimN(label, &v->x, 2, v_speed, v_min, v_max, format, flags);
 }
+
+static constexpr float F = 1/255.0f;
+
+bool sre::imgui::Col3Edit(const char *label, sre::col3 *col, ImGuiColorEditFlags flags) {
+    float fcol[3]{
+        col->r * F,
+        col->g * F,
+        col->b * F
+    };
+
+    if (ImGui::ColorEdit3(label, fcol, flags)) {
+        *col = sre::col3::fromNormalized(fcol[0], fcol[1], fcol[2]);
+        return true;
+    }
+    
+    return false;
+}
+
+bool sre::imgui::Col4Edit(const char *label, sre::col4 *col, ImGuiColorEditFlags flags) {
+    float fcol[4]{
+        col->r * F,
+        col->g * F,
+        col->b * F,
+        col->a * F
+    };
+
+    if (ImGui::ColorEdit4(label, fcol, flags)) {
+        *col = sre::col4::fromNormalized(fcol[0], fcol[1], fcol[2], fcol[3]);
+        return true;
+    }
+    
+    return false;
+}
+
+bool sre::imgui::AlignmentCombo(const char* label, sre::alignment* p, bool vertical)
+{
+    const char* const hvalues = "sre::ALIGN_LEFT\0sre::ALIGN_CENTER\0sre::ALIGN_RIGHT\0";
+    const char* const vvalues = "sre::ALIGN_TOP\0sre::ALIGN_CENTER\0sre::ALIGN_BOTTOM\0";
+    
+    int item = *p;
+    const char* values = vertical ? vvalues : hvalues;
+    if (ImGui::Combo(label, &item, values)) {
+        *p = static_cast<sre::alignment>(item);
+        return true;
+    }
+    
+    return false;
+}

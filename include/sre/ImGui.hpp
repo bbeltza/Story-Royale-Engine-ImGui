@@ -8,7 +8,10 @@
 #include <Core/Event.hpp>
 #include <imgui.h>
 
+#include <Base/Alignment.hpp>
+
 #include <Datatypes/UDim.hpp>
+#include <Datatypes/Color.h>
 #include <Datatypes/Rect.h>
 
 namespace sre
@@ -85,7 +88,12 @@ namespace sre
         inline bool DragRect2DD(const char* label, sre::rect2Dd* v, float v_speed = 1.0f, sre::rect2Dd v_min = { 0, 0 }, sre::rect2Dd v_max = { 0, 0 }, const char* format = "%.3f", ImGuiSliderFlags flags = 0) {
             return DragRect2DT(label, v, ImGuiDataType_Double, v_speed, &v_min, &v_max, format, flags);
         }
-    
+
+        //
+
+        bool Col3Edit(const char *label, sre::col3 *col, ImGuiColorEditFlags flags = 0);
+        bool Col4Edit(const char *label, sre::col4 *col, ImGuiColorEditFlags flags = 0);
+        bool AlignmentCombo(const char* label, sre::alignment* p, bool vertical);
     }
 }
 
